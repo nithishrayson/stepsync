@@ -25,6 +25,8 @@ class _HomeContentState extends State<HomeContent> {
           const SizedBox(height: 24),
           _buildHeroHeader(),
           const SizedBox(height: 24),
+          _buildGoalTracker(progressValue, "13 of 20 workouts completed"),
+          const SizedBox(height: 24),
           _buildSectionTitle("Today’s Highlights"),
           const SizedBox(height: 12),
           _buildMetricRow(),
@@ -32,10 +34,6 @@ class _HomeContentState extends State<HomeContent> {
           _buildSectionTitle("Popular workouts"),
           const SizedBox(height: 12),
           _buildWorkoutCards(),
-          const SizedBox(height: 24),
-          _buildSectionTitle("Goal Progress"),
-          const SizedBox(height: 12),
-          _buildGoalTracker(progressValue, "13 of 20 workouts completed"),
         ],
       ),
     );
@@ -180,9 +178,9 @@ class _HomeContentState extends State<HomeContent> {
 
   Widget _buildWorkoutCards() {
     final workouts = [
-      {"title": "Lower Body", "image": "assets/images/lower_body.jpg"},
-      {"title": "Upper Body", "image": "assets/images/upper_body.jpg"},
-      {"title": "Core Focus", "image": "assets/images/core_focus.jpg"},
+      {"title": "Core Focus", "image": "assets/images/lower_body.jpg"},
+      {"title": "Lower Body", "image": "assets/images/upper_body.jpg"},
+      {"title": "Upper Body", "image": "assets/images/core_focus.jpg"},
       {"title": "Muscle Specific", "image": "assets/images/muscle_target.jpg"},
     ];
 
