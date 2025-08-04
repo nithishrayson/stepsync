@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:stepsync/screens/ProfileScreen.dart';
-import 'package:stepsync/screens/ProgressScreen.dart';
-import 'package:stepsync/screens/WorkOutScreen.dart';
-import 'package:stepsync/widgets/home_content.dart';
+import 'package:stepsync/screens/ExploreScreen.dart';
+import 'package:stepsync/screens/AnalyticsScreen.dart';
+import '../widgets/home_content.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,11 +13,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
-  final List<Widget> pages = const [
+  final List<Widget> pages = [
     HomeContent(),
-    WorkoutScreen(),
-    ProgressScreen(),
-    Profilescreen(),
+    ExploreScreen(),
+    Analyticsscreen(),
   ];
 
   @override
@@ -27,23 +25,22 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: const Color(0xFF0D0D0D),
       body: SafeArea(child: pages[_selectedIndex]),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color(0xFF1A1A1A),
-        selectedItemColor: Colors.lightBlueAccent,
-        unselectedItemColor: Colors.grey,
         currentIndex: _selectedIndex,
+        backgroundColor: const Color(0xFF1A1A1A),
+        selectedItemColor: Colors.green,
+        unselectedItemColor: Colors.grey,
         onTap: (index) => setState(() => _selectedIndex = index),
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.fitness_center),
-            label: 'Workout',
+            icon: Icon(Icons.rocket_launch),
+            label: 'Explore',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.bar_chart),
-            label: 'Progress',
+            label: 'Analytics',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),
     );
