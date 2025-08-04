@@ -62,7 +62,7 @@
 ## 🛠️ Setup
 
 ```bash
-git clone https://github.com/your-username/stepsync.git
+git clone https://github.com/nithishrayson/stepsync.git
 cd stepsync
 flutter pub get
 flutter run
