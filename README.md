@@ -1,7 +1,3 @@
-Absolutely, Nithish! Here's a tailored description for your **Stepsync** project that reflects its purpose and unique features:
-
----
-
 # Stepsync 🚶‍♂️💓  
 **A Flutter-based wellness companion that syncs your step count, heart health, and hydration into one seamless dashboard.**
 
@@ -27,6 +23,3 @@ Stepsync is a modern Flutter application designed to help users monitor and main
 - 🔄 Social sync for shared challenges and motivation  
 - 📈 Analytics view for weekly/monthly trends
 
----
-
-Would you like a polished version of this for your GitHub README or want it split into sections with visuals? I can help write the full markdown layout too!
