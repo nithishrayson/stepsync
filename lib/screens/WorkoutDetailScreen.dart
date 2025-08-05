@@ -1,23 +1,47 @@
 import 'package:flutter/material.dart';
 
-class Workoutdetailscreen extends StatefulWidget {
-  const Workoutdetailscreen({super.key});
+class WorkoutDetailScreen extends StatelessWidget {
+  final String title;
+  final String imagePath;
 
-  @override
-  State<Workoutdetailscreen> createState() => _WorkoutdetailscreenState();
-}
+  const WorkoutDetailScreen({
+    Key? key,
+    required this.title,
+    required this.imagePath,
+  }) : super(key: key);
 
-class _WorkoutdetailscreenState extends State<Workoutdetailscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF0D0D0D),
       appBar: AppBar(
-        title: const Text(
-          "Workout Details",
-          style: TextStyle(color: Colors.white),
+        title: Text(title, style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: Container(
+        child: Stack(
+          children: [
+            Image.asset(
+              imagePath,
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: 250,
+            ),
+            Container(
+              width: double.infinity,
+              height: 250,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.black.withOpacity(0.7), Colors.transparent],
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
-      body: const Center(child: Text("Workout details will be shown here.")),
     );
   }
 }

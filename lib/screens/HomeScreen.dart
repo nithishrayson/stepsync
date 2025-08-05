@@ -45,7 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Stack(
           alignment: Alignment.centerLeft,
           children: [
-            // ✅ Animated moving background
             AnimatedAlign(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeOut,
@@ -65,7 +64,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            // ✅ Navigation icons
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: List.generate(icons.length, (index) {

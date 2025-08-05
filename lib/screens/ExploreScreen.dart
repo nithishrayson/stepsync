@@ -29,7 +29,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFF0D0D0D),
       appBar: AppBar(
-        title: const Text("Explore", style: TextStyle(color: Colors.white)),
+        title: const Text("What's for you ", style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
@@ -74,11 +74,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                           item['image']!,
                           fit: BoxFit.cover,
                           width: double.infinity,
-                          height: index.isEven ? 220 : 160,
+                          height: index.isEven ? 250 : 160,
                         ),
                         Container(
                           width: double.infinity,
-                          height: index.isEven ? 220 : 160,
+                          height: index.isEven ? 250 : 160,
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               colors: [

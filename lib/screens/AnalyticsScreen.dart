@@ -48,7 +48,7 @@ class AnalyticsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFF0D0D0D),
       appBar: AppBar(
-        title: const Text("Analytics", style: TextStyle(color: Colors.white)),
+        title: const Text("Check your stats", style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,

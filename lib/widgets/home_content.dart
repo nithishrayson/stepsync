@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stepsync/screens/ProfileScreen.dart';
+import 'package:stepsync/screens/WorkoutDetailScreen.dart';
 
 class HomeContent extends StatefulWidget {
   const HomeContent({super.key});
@@ -198,56 +199,71 @@ class _HomeContentState extends State<HomeContent> {
         separatorBuilder: (_, __) => const SizedBox(width: 12),
         itemBuilder: (context, index) {
           final workout = workouts[index];
-          return Container(
-            width: 200,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
-            child: Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: Image.asset(
-                    workout['image']!,
-                    width: double.infinity,
-                    height: double.infinity,
-                    fit: BoxFit.cover,
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => WorkoutDetailScreen(
+                    title: workout['title']!,
+                    imagePath: workout['image']!,
                   ),
                 ),
-                Container(
-                  decoration: BoxDecoration(
+              );
+            },
+            child: Container(
+              width: 200,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Stack(
+                children: [
+                  ClipRRect(
                     borderRadius: BorderRadius.circular(16),
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.black.withOpacity(0.6),
-                        Colors.transparent,
-                      ],
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
+                    child: Image.asset(
+                      workout['image']!,
+                      width: double.infinity,
+                      height: double.infinity,
+                      fit: BoxFit.cover,
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Spacer(),
-                      Text(
-                        workout['title']!,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                        ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.black.withOpacity(0.6),
+                          Colors.transparent,
+                        ],
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
                       ),
-                      const SizedBox(height: 4),
-                      const Text(
-                        "View Workouts",
-                        style: TextStyle(color: Colors.grey, fontSize: 12),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Spacer(),
+                        Text(
+                          workout['title']!,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        const Text(
+                          "View Workouts",
+                          style: TextStyle(color: Colors.grey, fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         },
