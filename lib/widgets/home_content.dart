@@ -19,7 +19,7 @@ class _HomeContentState extends State<HomeContent> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildWelcomeSection(),
+          _buildWelcomeSection(context),
           const SizedBox(height: 16),
           _buildSearchBar(),
           const SizedBox(height: 24),
@@ -39,32 +39,38 @@ class _HomeContentState extends State<HomeContent> {
     );
   }
 
-  Widget _buildWelcomeSection() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const Text(
-          "Welcome back, Nithish!",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(width: 100),
-        GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ProfileScreen()),
-            );
-          },
-          child: CircleAvatar(
-            radius: 20,
-            backgroundImage: AssetImage("assets/images/profile.jpg"),
-          ),
-        ),
-      ],
+  Widget _buildWelcomeSection(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Text(
+                "Welcome back, Nithish!",
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfileScreen()),
+                );
+              },
+              child: const CircleAvatar(
+                radius: 20,
+                backgroundImage: AssetImage("assets/images/profile.jpg"),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 

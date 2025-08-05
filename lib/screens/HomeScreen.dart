@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> pages = [
     HomeContent(),
     ExploreScreen(),
-    Analyticsscreen(),
+    AnalyticsScreen(),
   ];
 
   final List<IconData> icons = [
