@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:stepsync/screens/ExerciseStartScreen.dart';
+import 'package:stepsync/screens/WorkoutFlowScreen.dart'; // Make sure this model exists
 
 class WorkoutDetailScreen extends StatelessWidget {
   final String title;
@@ -10,7 +12,6 @@ class WorkoutDetailScreen extends StatelessWidget {
     required this.imagePath,
   }) : super(key: key);
 
-  // Sample exercises based on workout title
   List<Map<String, String>> getExercises(String label) {
     switch (label) {
       case "Core Focus":
@@ -20,16 +21,16 @@ class WorkoutDetailScreen extends StatelessWidget {
           {"name": "Leg Raises", "duration": "12 reps"},
           {"name": "Mountain Climbers", "duration": "30 sec"},
           {"name": "Bicycle Crunches", "duration": "15 reps"},
+          {"name": "Side Plank", "duration": "30 sec each side"},
           {"name": "Flutter Kicks", "duration": "30 sec"},
-          {"name": "Side Plank", "duration": "20 sec each side"},
-          {"name": "Sit-ups", "duration": "15 reps"},
           {"name": "Reverse Crunches", "duration": "12 reps"},
-          {"name": "Plank Jacks", "duration": "30 sec"},
-          {"name": "V-ups", "duration": "10 reps"},
+          {"name": "Plank Shoulder Taps", "duration": "30 sec"},
+          {"name": "V-Ups", "duration": "10 reps"},
           {"name": "Toe Touches", "duration": "15 reps"},
-          {"name": "Heel Touches", "duration": "20 reps"},
+          {"name": "Hip Dips", "duration": "30 sec"},
           {"name": "Windshield Wipers", "duration": "10 reps each side"},
           {"name": "Boat Pose", "duration": "30 sec"},
+          {"name": "Superman Exercise", "duration": "30 sec"},
         ];
       case "Lower Body":
         return [
@@ -38,34 +39,34 @@ class WorkoutDetailScreen extends StatelessWidget {
           {"name": "Glute Bridges", "duration": "30 sec"},
           {"name": "Donkey Kicks", "duration": "15 reps each side"},
           {"name": "Calf Raises", "duration": "20 reps"},
-          {"name": "Leg Press", "duration": "12 reps"},
+          {"name": "Hip Thrusts", "duration": "30 sec"},
           {"name": "Wall Sit", "duration": "30 sec"},
-          {"name": "Step-ups", "duration": "10 reps each leg"},
-          {"name": "Hip Thrusts", "duration": "15 reps"},
           {"name": "Side Lunges", "duration": "12 reps each side"},
-          {"name": "Fire Hydrants", "duration": "15 reps each side"},
+          {"name": "Step-ups", "duration": "10 reps each leg"},
+          {"name": "Leg Press", "duration": "15 reps"},
+          {"name": "Sumo Squats", "duration": "12 reps"},
           {"name": "Single-leg Deadlifts", "duration": "10 reps each leg"},
+          {"name": "Fire Hydrants", "duration": "15 reps each side"},
           {"name": "Curtsy Lunges", "duration": "12 reps each side"},
-          {"name": "Sumo Squats", "duration": "15 reps"},
-          {"name": "Leg Curls", "duration": "12 reps"},
+          {"name": "Box Jumps", "duration": "10 reps"},
         ];
       case "Upper Body":
         return [
           {"name": "Push-ups", "duration": "10 reps"},
           {"name": "Shoulder Press", "duration": "12 reps"},
           {"name": "Bent-over Rows", "duration": "10 reps"},
-          {"name": "Push-up to T-Plank", "duration": "30 sec"},
           {"name": "Tricep Dips", "duration": "12 reps"},
           {"name": "Bicep Curls", "duration": "15 reps"},
+          {"name": "Lateral Raises", "duration": "12 reps"},
           {"name": "Chest Press", "duration": "12 reps"},
-          {"name": "Lateral Raises", "duration": "15 reps"},
-          {"name": "Front Raises", "duration": "12 reps"},
-          {"name": "Plank Shoulder Taps", "duration": "30 sec"},
-          {"name": "Arnold Press", "duration": "10 reps"},
-          {"name": "Dumbbell Flyes", "duration": "12 reps"},
-          {"name": "Reverse Flyes", "duration": "12 reps"},
-          {"name": "Skull Crushers", "duration": "10 reps"},
+          {"name": "Plank to Push-up", "duration": "30 sec"},
+          {"name": "Arnold Press", "duration": "12 reps"},
           {"name": "Face Pulls", "duration": "15 reps"},
+          {"name": "Dumbbell Flyes", "duration": "12 reps"},
+          {"name": "Inverted Rows", "duration": "10 reps"},
+          {"name": "Skull Crushers", "duration": "12 reps"},
+          {"name": "Push-up Variations", "duration": "10 reps"},
+          {"name": "Wall Angels", "duration": "30 sec"},
         ];
       case "Muscle Specific":
         return [
@@ -73,17 +74,17 @@ class WorkoutDetailScreen extends StatelessWidget {
           {"name": "Tricep Dips", "duration": "15 reps"},
           {"name": "Calf Raises", "duration": "20 reps"},
           {"name": "Shoulder Press", "duration": "12 reps"},
-          {"name": "Chest Flyes", "duration": "10 reps"},
           {"name": "Lateral Raises", "duration": "15 reps"},
-          {"name": "Front Raises", "duration": "12 reps"},
+          {"name": "Chest Flyes", "duration": "12 reps"},
           {"name": "Bent-over Rows", "duration": "10 reps"},
-          {"name": "Deadlifts", "duration": "12 reps"},
+          {"name": "Leg Extensions", "duration": "15 reps"},
+          {"name": "Hamstring Curls", "duration": "12 reps"},
+          {"name": "Glute Bridges", "duration": "30 sec"},
           {"name": "Plank Shoulder Taps", "duration": "30 sec"},
-          {"name": "Push-ups", "duration": "10 reps"},
-          {"name": "Skull Crushers", "duration": "10 reps"},
-          {"name": "Face Pulls", "duration": "15 reps"},
+          {"name": "Russian Twists", "duration": "15 reps each side"},
+          {"name": "Side Plank Dips", "duration": "10 reps each side"},
           {"name": "Reverse Flyes", "duration": "12 reps"},
-          {"name": "Arnold Press", "duration": "10 reps"},
+          {"name": "Superman Exercise", "duration": "30 sec"},
         ];
       default:
         return [];
@@ -93,15 +94,15 @@ class WorkoutDetailScreen extends StatelessWidget {
   String _getWorkoutDescription(String label) {
     switch (label) {
       case "Core Focus":
-        return "This workout targets your abdominal and lower back muscles, helping you improve stability, posture, and overall balance — essential for nearly every movement.";
+        return "This workout is designed to strengthen your abdominal and lower back muscles, which are essential for maintaining posture, balance, and overall body control.";
       case "Lower Body":
-        return "Strengthens glutes, quads, hamstrings, and calves — key for improving mobility, power, and endurance. Perfect for anyone looking to build explosive legs.";
+        return "Targeting your glutes, quads, hamstrings, and calves, this routine builds strength and endurance in your legs.";
       case "Upper Body":
-        return "Builds muscle in your chest, back, shoulders, and arms. Ideal for sculpting strength and enhancing push-pull capabilities in everyday tasks.";
+        return "Focused on sculpting your chest, back, shoulders, and arms, this workout enhances your push-pull strength and muscular definition.";
       case "Muscle Specific":
-        return "Designed to isolate key muscle groups like biceps, triceps, and calves. Great for toning and bulking based on targeted effort.";
+        return "This routine isolates individual muscle groups such as biceps, triceps, shoulders, and calves.";
       default:
-        return "A balanced routine to improve your overall fitness, targeting multiple muscle groups and pushing you toward your full physical potential.";
+        return "A balanced routine for overall fitness, combining strength, endurance, and flexibility.";
     }
   }
 
@@ -115,24 +116,8 @@ class WorkoutDetailScreen extends StatelessWidget {
         title: Text(title, style: const TextStyle(color: Colors.white)),
         backgroundColor: Colors.transparent,
         elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
-      floatingActionButton: Container(
-        width: MediaQuery.of(context).size.width * 0.8,
-        alignment: Alignment.bottomCenter,
-        margin: const EdgeInsets.only(bottom: 30),
-        child: FloatingActionButton.extended(
-          onPressed: () {
-            // Start workout logic here
-          },
-          backgroundColor: Colors.green,
-          icon: const Icon(Icons.directions_run, color: Colors.black),
-          label: const Text(
-            "Start Workout",
-            style: TextStyle(color: Colors.black),
-          ),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -176,7 +161,7 @@ class WorkoutDetailScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "What This Workout Builds",
                     style: TextStyle(
                       color: Colors.white,
@@ -187,7 +172,7 @@ class WorkoutDetailScreen extends StatelessWidget {
                   const SizedBox(height: 8),
                   Text(
                     _getWorkoutDescription(title),
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white70,
                       fontSize: 15,
                       height: 1.4,
@@ -201,40 +186,89 @@ class WorkoutDetailScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               itemCount: exercises.length,
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               separatorBuilder: (_, __) => const SizedBox(height: 12),
               itemBuilder: (context, index) {
                 final exercise = exercises[index];
-                return Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white10,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        exercise['name']!,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (_) => ExerciseStartScreen(
+                              exerciseName: exercise['name']!,
+                              duration: exercise['duration']!,
+                            ),
                       ),
-                      Text(
-                        exercise['duration']!,
-                        style: const TextStyle(
-                          color: Colors.white54,
-                          fontSize: 14,
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.white10,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          exercise['name']!,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
                         ),
-                      ),
-                    ],
+                        Text(
+                          exercise['duration']!,
+                          style: const TextStyle(
+                            color: Colors.white54,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
             ),
             const SizedBox(height: 80),
           ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 30),
+        child: FloatingActionButton.extended(
+          onPressed: () {
+            List<Exercise> flowExercises =
+                exercises.map((e) {
+                  final seconds =
+                      e['duration']!.contains("sec")
+                          ? int.tryParse(
+                                e['duration']!.replaceAll(
+                                  RegExp(r'[^0-9]'),
+                                  '',
+                                ),
+                              ) ??
+                              30
+                          : 30;
+                  return Exercise(name: e['name']!, durationInSeconds: seconds);
+                }).toList();
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => WorkoutFlowScreen(exercises: flowExercises),
+              ),
+            );
+          },
+          backgroundColor: Colors.green,
+          icon: const Icon(Icons.directions_run, color: Colors.black),
+          label: const Text(
+            "Start Workout",
+            style: TextStyle(color: Colors.black),
+          ),
         ),
       ),
     );
