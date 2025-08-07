@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:stepsync/models/Workoutprogress.dart';
 import 'package:stepsync/screens/ProfileScreen.dart';
 import 'package:stepsync/screens/WorkoutDetailScreen.dart';
+import 'package:stepsync/screens/WorkoutflowScreen.dart';
 
 class HomeContent extends StatefulWidget {
   const HomeContent({super.key});
@@ -9,9 +11,28 @@ class HomeContent extends StatefulWidget {
   State<HomeContent> createState() => _HomeContentState();
 }
 
+List<Exercise> _getWorkoutExercises() {
+  // Replace with your actual logic or source
+  final rawExercises = [
+    {"name": "Jumping Jacks", "duration": "30 sec"},
+    {"name": "Push Ups", "duration": "45 sec"},
+    {"name": "Squats", "duration": "60 sec"},
+  ];
+
+  return rawExercises.map((e) {
+    final seconds =
+        e['duration']!.contains("sec")
+            ? int.tryParse(e['duration']!.replaceAll(RegExp(r'[^0-9]'), '')) ??
+                30
+            : 30;
+    return Exercise(name: e['name']!, durationInSeconds: seconds);
+  }).toList();
+}
+
 class _HomeContentState extends State<HomeContent> {
   double progressValue = 0.65;
   final TextEditingController _searchController = TextEditingController();
+  WorkoutProgress? progress;
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +44,17 @@ class _HomeContentState extends State<HomeContent> {
           _buildWelcomeSection(context),
           const SizedBox(height: 16),
           _buildSearchBar(),
-          const SizedBox(height: 24),
+          const SizedBox(height: 16),
+          if (progress != null) _buildResumeCard(progress!),
+          const SizedBox(height: 16),
           _buildHeroHeader(),
-          const SizedBox(height: 24),
+          const SizedBox(height: 16),
           _buildGoalTracker(progressValue, "13 of 20 workouts completed"),
-          const SizedBox(height: 24),
+          const SizedBox(height: 16),
           _buildSectionTitle("Today’s Highlights"),
           const SizedBox(height: 12),
           _buildMetricRow(),
-          const SizedBox(height: 24),
+          const SizedBox(height: 16),
           _buildSectionTitle("Popular workouts"),
           const SizedBox(height: 12),
           _buildWorkoutCards(),
@@ -120,13 +143,23 @@ class _HomeContentState extends State<HomeContent> {
           const Positioned(
             left: 20,
             bottom: 20,
-            child: Text(
-              "Work hard, stay fit!",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 22,
-                fontWeight: FontWeight.w700,
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Get Fit, Stay Strong",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 4),
+                Text(
+                  "Your fitness journey starts here",
+                  style: TextStyle(color: Colors.white70, fontSize: 14),
+                ),
+              ],
             ),
           ),
         ],
@@ -204,10 +237,11 @@ class _HomeContentState extends State<HomeContent> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => WorkoutDetailScreen(
-                    title: workout['title']!,
-                    imagePath: workout['image']!,
-                  ),
+                  builder:
+                      (_) => WorkoutDetailScreen(
+                        title: workout['title']!,
+                        imagePath: workout['image']!,
+                      ),
                 ),
               );
             },
@@ -267,6 +301,57 @@ class _HomeContentState extends State<HomeContent> {
             ),
           );
         },
+      ),
+    );
+  }
+
+  Widget _buildResumeCard(WorkoutProgress progress) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder:
+                (_) => WorkoutFlowScreen(
+                  exercises: _getWorkoutExercises(),
+                  startFromIndex: progress.lastCompletedIndex,
+                ),
+          ),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.05),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.white.withOpacity(0.1)),
+        ),
+        child: Row(
+          children: [
+            const Icon(Icons.play_circle_fill, color: Colors.green, size: 32),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Resume Workout",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    "Last completed: Exercise ${progress.lastCompletedIndex + 1}",
+                    style: TextStyle(color: Colors.grey[400], fontSize: 14),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

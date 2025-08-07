@@ -12,8 +12,13 @@ class Exercise {
 
 class WorkoutFlowScreen extends StatefulWidget {
   final List<Exercise> exercises;
+  final int startFromIndex;
 
-  const WorkoutFlowScreen({Key? key, required this.exercises}) : super(key: key);
+  const WorkoutFlowScreen({
+    Key? key,
+    required this.exercises,
+    required this.startFromIndex,
+  }) : super(key: key);
 
   @override
   State<WorkoutFlowScreen> createState() => _WorkoutFlowScreenState();
@@ -66,7 +71,9 @@ class _WorkoutFlowScreenState extends State<WorkoutFlowScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => WorkoutSummaryScreen(completedExercises: completedExercises),
+          builder:
+              (_) =>
+                  WorkoutSummaryScreen(completedExercises: completedExercises),
         ),
       );
     }
@@ -85,36 +92,57 @@ class _WorkoutFlowScreenState extends State<WorkoutFlowScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFF0D0D0D),
       body: Center(
-        child: isResting
-            ? Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Icon(Icons.hourglass_bottom, size: 80, color: Colors.orangeAccent),
-                  SizedBox(height: 20),
-                  Text("Rest Time", style: TextStyle(color: Colors.white, fontSize: 24)),
-                  SizedBox(height: 10),
-                  Text("Next exercise coming up...", style: TextStyle(color: Colors.white70)),
-                ],
-              )
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.fitness_center, size: 80, color: Colors.greenAccent),
-                  const SizedBox(height: 20),
-                  Text(current.name, style: const TextStyle(color: Colors.white, fontSize: 28)),
-                  const SizedBox(height: 10),
-                  Text("Time Remaining", style: const TextStyle(color: Colors.white70)),
-                  const SizedBox(height: 10),
-                  Text(
-                    "$countdown sec",
-                    style: const TextStyle(
-                      color: Colors.greenAccent,
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
+        child:
+            isResting
+                ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(
+                      Icons.hourglass_bottom,
+                      size: 80,
+                      color: Colors.orangeAccent,
                     ),
-                  ),
-                ],
-              ),
+                    SizedBox(height: 20),
+                    Text(
+                      "Rest Time",
+                      style: TextStyle(color: Colors.white, fontSize: 24),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      "Next exercise coming up...",
+                      style: TextStyle(color: Colors.white70),
+                    ),
+                  ],
+                )
+                : Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.fitness_center,
+                      size: 80,
+                      color: Colors.greenAccent,
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      current.name,
+                      style: const TextStyle(color: Colors.white, fontSize: 28),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      "Time Remaining",
+                      style: const TextStyle(color: Colors.white70),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      "$countdown sec",
+                      style: const TextStyle(
+                        color: Colors.greenAccent,
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
       ),
     );
   }

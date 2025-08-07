@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stepsync/screens/ExerciseStartScreen.dart';
-import 'package:stepsync/screens/WorkoutFlowScreen.dart'; // Make sure this model exists
+import 'package:stepsync/screens/WorkoutFlowScreen.dart'; 
 
 class WorkoutDetailScreen extends StatelessWidget {
   final String title;
@@ -259,7 +259,11 @@ class WorkoutDetailScreen extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (_) => WorkoutFlowScreen(exercises: flowExercises),
+                builder:
+                    (_) => WorkoutFlowScreen(
+                      exercises: flowExercises,
+                      startFromIndex: 0, 
+                    ),
               ),
             );
           },
